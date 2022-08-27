@@ -1,0 +1,170 @@
+/* poppins go br */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
+
+html, body {
+    padding: 0; margin: 0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+}
+
+#bg {
+    position: absolute;
+    z-index: -10;
+    background-size: cover;
+}
+
+#header {
+    position: fixed;
+    top: 1rem;
+    left: 2rem;
+    width: calc(100vw - 7rem);
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.2);
+
+    border: 3px solid #D9D9D9;
+    backdrop-filter: blur(7px);
+
+    border-radius: 30px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    z-index: 100;
+    box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+#header > #header-items {
+    display: flex;
+    flex-direction: row;
+
+    gap: 1.5rem;
+}
+
+#header > #header-items > div {
+    padding: 0.75rem;
+    text-align: center;
+    align-self: center;
+
+    cursor: pointer;
+}
+
+#header > #header-items > #github-button {
+    padding: 0.7rem 1.25rem;
+
+    margin-left: 1rem;
+    margin-right: 1rem;
+    background-color: #FEA82F;
+    border-radius: 10px;
+
+    transition: background-color 200ms;
+}
+
+#header > #header-items > #github-button:hover {
+    background-color: #da8d22;
+    cursor: pointer;
+}
+
+#carousel {
+    background-color: #d3e8f3aa;
+    backdrop-filter: blur(7px);
+    margin-bottom: 1rem;
+
+    display: flex;
+    flex-direction: row;
+
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+
+    /* hide scrollbars but keep their functionality */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    scroll-snap-type: x proximity;
+}
+
+#carousel::-webkit-scrollbar {
+    display: none;
+}
+
+#carousel > .carousel-card {
+    min-width: 80vw;
+    max-width: 80vw;
+    height: 85%;
+
+    align-self: center;
+    text-align: center;
+
+    flex: 1;
+
+    background-color: white;
+
+    border: 3px solid #FEFBF6;
+    box-shadow: 2px 4px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 50px;
+
+    scroll-snap-align: center;
+}
+
+#carousel > .carousel-card:first-of-type {
+    margin-left: 10vw;
+}
+
+#carousel > .carousel-card:last-of-type {
+    margin-right: 10vw;
+}
+
+#carousel > .carousel-separator {
+    margin-left: calc(2.5vw - 5px);
+    margin-right: calc(2.5vw - 5px);
+
+    min-width: 10px;
+    height: 30%;
+    align-self: center;
+
+    background-color: white;
+
+    border: 1px solid #D9D9D9;
+    border-radius: 50px;
+    /* min-width: 5vw; */
+}
+
+#bottom-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    gap: 7.5rem;
+    padding-left: 7.5rem;
+    padding-right: 7.5rem;
+}
+
+#bottom-buttons > div {
+    text-align: center;
+    background-color: #fff;
+
+    border: 3px solid #D9D9D9;
+    border-radius: 30px;
+    font-size: 20px;
+
+    padding: 1rem;
+    flex: 1;
+
+    cursor: pointer;
+    user-select: none;
+
+    transition: background-color 200ms;
+}
+
+#bottom-buttons > div:hover {
+    background-color: #eee;
+}
+
+#main {
+    height: 100vh;
+    width: 100%;
+    padding-top: 8.25rem;
+    background-image: url(./dec-bg.svg);
+    background-position: center;
+    background-repeat: repeat;
+}
