@@ -6,5 +6,5 @@ const bottomButtons = document.getElementById("bottom-buttons");
 const headerRect = header.getBoundingClientRect();
 const bottomButtonsRect = bottomButtons.getBoundingClientRect();
 
-main.style.paddingTop = `calc(${headerRect.height}px + 2rem)`;
-carousel.style.height = `calc(100vh - ${headerRect.height}px - ${bottomButtonsRect.height}px - 4.5rem)`
+main.style.paddingTop = `calc(${headerRect.height}px + 3rem)`;
+carousel.style.height = `calc(100vh - ${headerRect.height}px - ${bottomButtonsRect.height}px - 6.5rem)`

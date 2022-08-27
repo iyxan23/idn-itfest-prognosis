@@ -15,7 +15,7 @@ html, body {
 
 #header {
     position: fixed;
-    top: 1rem;
+    top: 1.5rem;
     left: 2rem;
     width: calc(100vw - 7rem);
     padding: 1.25rem;
@@ -41,34 +41,28 @@ html, body {
     gap: 1.5rem;
 }
 
-#header > #header-items > div {
+#header > #header-items > a {
     padding: 0.75rem;
     text-align: center;
     align-self: center;
 
+    text-decoration: none;
+    color: inherit;
+
     cursor: pointer;
+
+    border-radius: 30px;
+    transition: background-color 300ms;
 }
 
-#header > #header-items > #github-button {
-    padding: 0.7rem 1.25rem;
-
-    margin-left: 1rem;
-    margin-right: 1rem;
-    background-color: #FEA82F;
-    border-radius: 10px;
-
-    transition: background-color 200ms;
-}
-
-#header > #header-items > #github-button:hover {
-    background-color: #da8d22;
-    cursor: pointer;
+#header > #header-items > a:hover {
+    background-color: #0000000f;
 }
 
 #carousel {
     background-color: #d3e8f3aa;
     backdrop-filter: blur(7px);
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 
     display: flex;
     flex-direction: row;
@@ -88,9 +82,9 @@ html, body {
 }
 
 #carousel > .carousel-card {
-    min-width: 80vw;
-    max-width: 80vw;
-    height: 85%;
+    min-width: 60vw;
+    max-width: 60vw;
+    height: 80%;
 
     align-self: center;
     text-align: center;
@@ -107,11 +101,11 @@ html, body {
 }
 
 #carousel > .carousel-card:first-of-type {
-    margin-left: 10vw;
+    margin-left: 20vw;
 }
 
 #carousel > .carousel-card:last-of-type {
-    margin-right: 10vw;
+    margin-right: 20vw;
 }
 
 #carousel > .carousel-separator {
@@ -119,7 +113,7 @@ html, body {
     margin-right: calc(2.5vw - 5px);
 
     min-width: 10px;
-    height: 30%;
+    height: 40%;
     align-self: center;
 
     background-color: white;
@@ -132,14 +126,14 @@ html, body {
 #bottom-buttons {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
 
     gap: 7.5rem;
-    padding-left: 7.5rem;
-    padding-right: 7.5rem;
+
+    margin-bottom: 3rem;
 }
 
-#bottom-buttons > div {
+#bottom-buttons > * {
     text-align: center;
     background-color: #fff;
 
@@ -153,17 +147,85 @@ html, body {
     cursor: pointer;
     user-select: none;
 
+    text-decoration: none;
+    color: inherit;
+
     transition: background-color 200ms;
 }
 
-#bottom-buttons > div:hover {
+#bottom-buttons > *:hover {
     background-color: #eee;
 }
 
+#blog > h1 {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+#blog > #blog-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+}
+
+#blog > #blog-cards > .blog-card {
+    padding: 1.5rem;
+
+    background-color: #FFFFFF;
+    border: 3px solid #D9D9D9;
+
+    box-shadow: 2px 4px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+
+    user-select: none;
+    transition: all 300ms;
+}
+
+#blog > #blog-cards > .blog-card:hover {
+    background-color: #f6f6f6;
+    cursor: pointer;
+
+    box-shadow: 2px 4px 40px rgba(0, 0, 0, 0.2);
+    border-radius: 30px;
+}
+
+#blog > #blog-cards > .blog-card > .blog-card-header {
+    font-weight: 700;
+    font-size: 20pt;
+    text-align: center;
+
+    margin-bottom: 0.75rem;
+}
+
+#blog > #blog-cards > .blog-card > .blog-card-divider {
+    height: 5px;
+    background-color: #cdcdcd;
+    border-radius: 50px;
+
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 0.75rem;
+}
+
+#content {
+    padding-left: 10rem;
+    padding-right: 10rem;
+}
+
+#footer {
+    margin-top: 3rem;
+    min-height: 30rem;
+
+    background: rgba(255, 255, 255, 0.25);
+
+    border-top: 3px solid #D9D9D9;
+    backdrop-filter: blur(10px);
+    
+    border-radius: 50px;    
+}
+
 #main {
-    height: 100vh;
     width: 100%;
-    padding-top: 8.25rem;
     background-image: url(./dec-bg.svg);
     background-position: center;
     background-repeat: repeat;
