@@ -1,1 +1,125 @@
 @import "common.css";
+
+#header {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+#main {
+    background-image: none;
+    display: flex;
+    justify-content: center;
+}
+
+#top-bg {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+
+    min-height: 50vh;
+    background-color: #A6D1E6;
+    background-image: url(./assets/dec-bg.svg);
+    background-position: center;
+
+    border-radius: 0 0 50px 50px;
+    z-index: -10;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+
+    max-width: 60vw;
+
+    padding: 0 5rem;
+    background: #FFFFFF;
+
+    border: 3px solid #D9D9D9;
+
+    box-shadow: 2px 4px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 50px;
+}
+
+#content > #content-header {
+    font-family: 'Poppins';
+    font-weight: 700;
+    font-size: 25pt;
+
+    align-self: center;
+
+    padding: 1.5rem;
+    background: #FFFFFF;
+
+    border: 3px solid #D9D9D9;
+
+    box-shadow: 2px 4px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+
+    transform: translateY(-4rem);
+}
+
+#content > .profile {
+    display: flex;
+    flex-direction: row;
+
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+#content > .profile > img {
+    max-width: 30%;
+    object-fit: scale-down;
+}
+
+#content > .profile > .profile-content {
+    display: flex;
+    flex-direction: column;
+}
+
+#content > .profile > .profile-content > .profile-header {
+    display: flex;
+
+    font-family: 'Poppins';
+    font-style: italic;
+    font-weight: 700;
+    font-size: 30pt;
+    line-height: 96px;
+}
+
+#content > .profile.reversed {
+    flex-direction: row-reverse;
+}
+
+#content > .profile.reversed > .profile-content > .profile-header {
+    text-align: right;
+}
+
+@media (max-width: 640px) {
+}
+
+@media (max-width: 768px) {
+    #content {
+        width: 100%;
+        max-width: none;
+        padding: 0 2.5rem;
+    }
+
+    #content > .profile {
+        flex-direction: column;
+    }
+    
+    #content > .profile.reversed {
+        flex-direction: column;
+    }
+
+    #content > .profile > img {
+        max-width: none;
+        max-height: 50vh;
+    }
+}
+
+@media (max-width: 1024px) {
+    #content {
+        max-width: 80vw;
+    }
+}
