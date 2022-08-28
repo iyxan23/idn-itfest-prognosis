@@ -61,9 +61,21 @@ html, body {
 
 #main {
     width: 100%;
-    background-image: url(./dec-bg.svg);
+    background-image: url(./assets/dec-bg.svg);
     background-position: center;
     background-repeat: repeat;
+}
+
+#footer {
+    margin-top: 3rem;
+    min-height: 30rem;
+
+    background: rgba(255, 255, 255, 0.25);
+
+    border-top: 3px solid #D9D9D9;
+    backdrop-filter: blur(10px);
+    
+    border-radius: 50px;    
 }
 
 @media (max-width: 640px) {
