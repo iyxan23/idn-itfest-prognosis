@@ -1,63 +1,4 @@
-/* poppins go br */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
-
-html, body {
-    padding: 0; margin: 0;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-}
-
-#bg {
-    position: absolute;
-    z-index: -10;
-    background-size: cover;
-}
-
-#header {
-    position: fixed;
-    top: 1.5rem;
-    left: 2rem;
-    width: calc(100vw - 7rem);
-    padding: 1.25rem;
-    background: rgba(255, 255, 255, 0.2);
-
-    border: 3px solid #D9D9D9;
-    backdrop-filter: blur(7px);
-
-    border-radius: 30px;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
-    z-index: 100;
-    box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-#header > #header-items {
-    display: flex;
-    flex-direction: row;
-
-    gap: 1.5rem;
-}
-
-#header > #header-items > a {
-    padding: 0.75rem;
-    text-align: center;
-    align-self: center;
-
-    text-decoration: none;
-    color: inherit;
-
-    cursor: pointer;
-
-    border-radius: 30px;
-    transition: background-color 300ms;
-}
-
-#header > #header-items > a:hover {
-    background-color: #0000000f;
-}
+@import "common.css";
 
 #carousel {
     background-color: #d3e8f3aa;
@@ -81,6 +22,51 @@ html, body {
     display: none;
 }
 
+#carousel > .carousel-card > .carousel-content {
+    display: flex;
+    flex-direction: column;
+
+    padding: 2rem;
+    overflow-y: hidden;
+    flex: 1;
+}
+
+#carousel > .carousel-card > .carousel-content > .carousel-content-text {
+    text-align: left;
+}
+
+#carousel > .carousel-card > .carousel-content > .carousel-content-header {
+    text-align: center;
+    font-weight: 700;
+    font-size: 25pt;
+}
+
+#carousel > .carousel-card > .carousel-content > .carousel-content-divider {
+    height: 5px;
+    background-color: #cdcdcd;
+    border-radius: 50px;
+
+    margin-left: 40%;
+    margin-right: 40%;
+    margin-bottom: 1.5rem;
+}
+
+#carousel > .carousel-card > .carousel-content-img {
+    align-self: center;
+
+    border: 2px solid #D9D9D9;
+    box-shadow: 2px 3.5px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+}
+
+#carousel > .carousel-card > .carousel-content-img.img-left {
+    margin-left: 2rem;
+}
+
+#carousel > .carousel-card > .carousel-content-img.img-right {
+    margin-right: 2rem;
+}
+
 #carousel > .carousel-card {
     min-width: 60vw;
     max-width: 60vw;
@@ -98,6 +84,9 @@ html, body {
     border-radius: 50px;
 
     scroll-snap-align: center;
+
+    display: flex;
+    flex-direction: row;
 }
 
 #carousel > .carousel-card:first-of-type {
@@ -128,18 +117,20 @@ html, body {
     flex-direction: row;
     justify-content: space-between;
 
-    gap: 7.5rem;
+    gap: 7vw;
 
     margin-bottom: 3rem;
 }
 
 #bottom-buttons > * {
     text-align: center;
+    align-self: center;
+    
     background-color: #fff;
 
     border: 3px solid #D9D9D9;
     border-radius: 30px;
-    font-size: 20px;
+    font-size: 15pt;
 
     padding: 1rem;
     flex: 1;
@@ -224,9 +215,49 @@ html, body {
     border-radius: 50px;    
 }
 
-#main {
-    width: 100%;
-    background-image: url(./dec-bg.svg);
-    background-position: center;
-    background-repeat: repeat;
+@media (max-width: 640px) {
+    #content {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    #bottom-buttons {
+        gap: 1.5rem;
+    }
+
+    #bottom-buttons > * {
+        font-size: 12pt;
+    }
+
+    #blog > #blog-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    #bottom-buttons {
+        display: flex;
+    }
+
+    #content {
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+    }
+
+    #carousel > .carousel-card {
+        min-width: 75vw;
+        max-width: 75vw;
+    }
+
+    #carousel > .carousel-card:first-of-type {
+        margin-left: 10vw;
+    }
+
+    #carousel > .carousel-card:last-of-type {
+        margin-right: 10vw;
+    }
 }
