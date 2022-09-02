@@ -51,7 +51,7 @@
     font-size: 28pt;
 }
 
-#main > #main-box > #box-question {
+#main > #main-box > #box-subheader {
     font-style: normal;
     font-weight: 400;
     font-size: 12pt;
@@ -61,7 +61,30 @@
     margin-bottom: 2rem;
 }
 
-#main > #main-box > #answers {
+#main > #main-box > #box-content > #infected {
+    text-align: center;
+}
+
+#main > #main-box > #box-content > #infected > #separator {
+    height: 5px;
+    background-color: #cdcdcd;
+    border-radius: 50px;
+
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-bottom: 3rem;
+}
+
+#main > #main-box > #box-content > #infected > #disclamer {
+    font-size: 10pt;
+    color: red;
+}
+
+#main > #main-box > #box-content > #infected > #infected-content {
+    margin-bottom: 3rem;    
+}
+
+#main > #main-box > #box-content > #answers {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -70,7 +93,7 @@
     gap: 1rem;
 }
 
-#main > #main-box > #answers > div {
+#main > #main-box > #box-content > #answers > div {
     padding: 1rem;
     width: 100%;
 
@@ -91,7 +114,7 @@
     transition: background-color 300ms;
 }
 
-#main > #main-box > #answers > div:hover {
+#main > #main-box > #box-content > #answers > div:hover {
     background-color: #f0eae0;
 }
 
