@@ -45,10 +45,10 @@ var data = {
             "description": "Kelihatannya anda terkena Disease B, lorem ipsum dolor sir amet consectetur adipisicing elit. Exercitationem minima ipsam quis dignissimos, sit maxime ullam optio, ducimus quae at qui vitae magnam vero possimus. Dolorem quod tenetur numquam quisquam.",
 			"link": "https://letmegooglethat.com/?q=lorem%20ipsum",
 			"symptoms": {
-				"vommiting": 90,
-				"runny-nose": 40,
-				"cough": 60,
-				"fever": 30
+                "cough": 70,
+				"vommiting": 60,
+				"runny-nose": 20,
+				"nausea": 5,
 			}
         }
 	},
@@ -77,8 +77,11 @@ function process() {
     let maxValue = Object.values(symptomScores)[0];
     let maxSymptom = Object.keys(symptomScores)[0];
 
-    if (maxValue.length === 0) {
-        // we ran out of questions, present the most probable disease
+    console.log(`maxVal: ${maxValue}`);
+
+    if (Object.values(symptomScores).length === 1) {
+        // present
+        return false;
     }
 
     for (const symptom in symptomScores) {
@@ -91,6 +94,8 @@ function process() {
     // then ask it
     currentQuestion = maxSymptom;
     subheader.textContent = dataMod.questions[maxSymptom];
+
+    return true;
 }
 
 function answerYes() {
@@ -127,7 +132,24 @@ function answerYes() {
     }
 
     // check for the treshold
-    process();
+    const continueAsking = process();
+
+    if (continueAsking === false) {
+        // present the most probable disease
+        let max = 0;
+        let maxName;
+
+        for (const disease in scores) {
+            if (scores[disease] > max) {
+                max = scores[disease];
+                maxName = disease;
+            }
+        }
+
+        console.log(`present disease ${maxName}`);
+
+        presentDisease(maxName);
+    }
 }
 
 function answerNo() {
@@ -156,14 +178,32 @@ function answerNo() {
     // calculate scores
     const scores = calculateDiseaseScore();
     console.log(scores);
-    for (const disease in scores) {
-        if (scores[disease] >= 0.75) {
-            // this is probably the disease we're looking for
-        }
-    }
 
-    // check for the treshold
-    process();
+    const continueAsking = process();
+
+    if (continueAsking === false) {
+        // present the most probable disease
+        let max = 0;
+        let maxName;
+
+        for (const disease in scores) {
+            if (scores[disease] > max) {
+                max = scores[disease];
+                maxName = disease;
+            }
+        }
+
+        console.log(`present disease ${maxName}`);
+
+        presentDisease(maxName);
+    }
+}
+
+function presentDisease(diseaseName) {
+    infected.style.display = "inherit";
+    answers.style.display = "none";
+
+    infectedContent.innerText = dataMod.diseases[diseaseName].description;
 }
 
 function removeSymptom() {
