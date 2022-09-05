@@ -1,1 +1,4 @@
-<img src="https://i.kym-cdn.com/photos/images/original/002/018/144/1f8.png"/>
+# Prognosis
+A simple static website that has blogs about health and a tool that can check your health.
+
+> Submission of IDN IT FEST 2022
