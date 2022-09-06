@@ -204,6 +204,7 @@ function presentDisease(diseaseName) {
     answers.style.display = "none";
 
     infectedContent.innerText = dataMod.diseases[diseaseName].description;
+    subheader.innerText = dataMod.diseases[diseaseName].name;
 }
 
 function removeSymptom() {
