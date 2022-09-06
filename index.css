@@ -215,29 +215,6 @@
     border-radius: 50px;    
 }
 
-@media (max-width: 640px) {
-    #content {
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-    }
-}
-
-@media (max-width: 768px) {
-    #bottom-buttons {
-        gap: 1.5rem;
-    }
-
-    #bottom-buttons > * {
-        font-size: 12pt;
-    }
-
-    #blog > #blog-cards {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-    }
-}
-
 @media (max-width: 1024px) {
     #bottom-buttons {
         display: flex;
@@ -259,5 +236,74 @@
 
     #carousel > .carousel-card:last-of-type {
         margin-right: 10vw;
+    }
+    
+    #carousel > .carousel-card > .carousel-content > .carousel-content-header {
+        font-size: 18pt;
+    }
+}
+
+@media (max-width: 768px) {
+    #bottom-buttons {
+        gap: 1.5rem;
+    }
+
+    #bottom-buttons > * {
+        font-size: 12pt;
+    }
+
+    #blog > #blog-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    #carousel > .carousel-separator {
+        min-width: 0px;
+
+        margin-left: 7.5vw;
+        margin-right: 7.5vw;
+
+        background-color: none;
+        border: none;
+        border-radius: none;
+    }
+
+    #carousel > .carousel-card {
+        min-width: 90vw;
+    }
+    
+    #carousel > .carousel-card > .carousel-content-img {
+        display: none;
+    }
+
+    #carousel > .carousel-card > .carousel-content > .carousel-content-header {
+        font-size: 15pt;
+    }
+
+    #carousel > .carousel-card > .carousel-content > .carousel-content-divider {
+        display: none;
+    }
+
+    #bottom-buttons {
+        margin-top: 3rem;
+        flex-direction: column;
+        gap: 3vw;
+    }
+
+    #bottom-buttons > * {
+        width: 75%;
+    } 
+
+    /* no blog kids */
+    #bottom-buttons > *:last-of-type {
+        display: none;
+    }
+}
+
+@media (max-width: 640px) {
+    #content {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
     }
 }

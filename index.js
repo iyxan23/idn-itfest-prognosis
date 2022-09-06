@@ -8,7 +8,12 @@ function updateSizes() {
     const bottomButtonsRect = bottomButtons.getBoundingClientRect();
 
     main.style.paddingTop = `calc(${headerRect.height}px + 3rem)`;
-    carousel.style.height = `calc(100vh - ${headerRect.height}px - ${bottomButtonsRect.height}px - 6.5rem)`
+
+    if (document.documentElement.clientWidth < 768) {
+        carousel.style.height = `calc(100vh - ${headerRect.height}px - 5rem)`
+    } else {
+        carousel.style.height = `calc(100vh - ${headerRect.height}px - ${bottomButtonsRect.height}px - 6.5rem)`
+    }
 }
 
 onresize = updateSizes;
