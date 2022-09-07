@@ -39,6 +39,8 @@
     text-align: center;
     font-weight: 700;
     font-size: 25pt;
+
+    margin-bottom: 0.75rem;
 }
 
 #carousel > .carousel-card > .carousel-content > .carousel-content-divider {
@@ -48,7 +50,7 @@
 
     margin-left: 40%;
     margin-right: 40%;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 #carousel > .carousel-card > .carousel-content-img {
@@ -87,6 +89,8 @@
 
     display: flex;
     flex-direction: row;
+
+    transition: all 500ms;
 }
 
 #carousel > .carousel-card:first-of-type {
@@ -115,9 +119,7 @@
 #bottom-buttons {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-
-    gap: 7vw;
+    justify-content: center;
 
     margin-bottom: 3rem;
 }
@@ -133,7 +135,7 @@
     font-size: 15pt;
 
     padding: 1rem;
-    flex: 1;
+    width: 35vw;
 
     cursor: pointer;
     user-select: none;
@@ -246,10 +248,12 @@
 @media (max-width: 768px) {
     #bottom-buttons {
         gap: 1.5rem;
+        margin-top: 3rem;
     }
 
     #bottom-buttons > * {
-        font-size: 12pt;
+        font-size: 16pt;
+        width: 70%;
     }
 
     #blog > #blog-cards {
@@ -282,21 +286,6 @@
     }
 
     #carousel > .carousel-card > .carousel-content > .carousel-content-divider {
-        display: none;
-    }
-
-    #bottom-buttons {
-        margin-top: 3rem;
-        flex-direction: column;
-        gap: 3vw;
-    }
-
-    #bottom-buttons > * {
-        width: 75%;
-    } 
-
-    /* no blog kids */
-    #bottom-buttons > *:last-of-type {
         display: none;
     }
 }
