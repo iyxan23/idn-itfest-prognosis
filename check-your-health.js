@@ -1,3 +1,31 @@
+/**
+ * So the algorithm of this is very simple but complicated to explain.
+ * 
+ * To be honest, I don't think it's very accurate as it only has an input
+ * of the symptoms of the user and does some evaluations depending on the
+ * weights of the symptom of each diseases.
+ * 
+ * On each of the diseases on the data, it has a map of symptoms that
+ * stores their weight.
+ * 
+ * The order of questions that'll be asked to the user descends from the
+ * most popular (that has the most total weight of all diseases) to the
+ * lowest.
+ * 
+ * There's something called as "scores" of which each disease has a
+ * value of, it ranges from 0-1 that represents how probable a disease
+ * is. Every disease starts from 1 and gets less and less each time the
+ * user answer questions.
+ * 
+ * A disease's score gets reduced by the weight of a symptom if that
+ * symptom is answered as "no", and otherwise.
+ * 
+ * Checking whether a disease is probable is done by getting the max
+ * score of a disease, separating it from the other scores, then the
+ * other scores gets averaged, compared with the max if it reaches
+ * whithin a threshold.
+ */
+
 const infected = document.getElementById("infected");
 const infectedContent = document.getElementById("infected-content");
 
@@ -11,7 +39,7 @@ var diseasesScores; // { name(str) -> score(int) }
 var currentQuestion = ""; // symptom
 var answered = {}; // { name(str) -> bool }
 
-const treshold = 0.75;
+const treshold = 0.5;
 
 // fetch("./data/diseases.json")
 //     .then(data => data.json())
@@ -70,6 +98,7 @@ console.log(data);
 process();
 
 function process() {
+    console.log("proces");
     console.log(dataMod);
     let symptomScores = sumSymptoms(dataMod);
 
@@ -79,8 +108,8 @@ function process() {
 
     console.log(`maxVal: ${maxValue}`);
 
+    // present when this is the last symptom
     if (Object.values(symptomScores).length === 1) {
-        // present
         return false;
     }
 
@@ -123,6 +152,31 @@ function answerYes() {
     
     // calculate scores
     const scores = calculateDiseaseScore();
+
+    // find the max score
+    let maxScore = 0;
+    let maxName;
+
+    for (const name in scores) {
+        if (maxScore < scores[name]) {
+            maxScore = scores[name];
+            maxName = name;
+        }
+    }
+
+    const scores_ = JSON.parse(JSON.stringify(scores));
+    delete scores_[maxName];
+
+    const average = Object.values(scores_).reduce((acc, val) => acc + val, 0) / Object.values(scores).length;
+    console.log(`total w/o max: ${average}`);
+    console.log(`delta: ${maxScore - average}`);
+
+    // or when the other items' average is above the treshold compared to the maximum symptom score
+    if (maxScore - average >= treshold) {
+        console.log("FOUND");
+        console.log(maxName);
+    }
+
     console.log(scores);
     for (const disease in scores) {
         if (scores[disease] >= 0.75) {
@@ -177,6 +231,31 @@ function answerNo() {
     
     // calculate scores
     const scores = calculateDiseaseScore();
+
+    // find the max score
+    let maxScore = 0;
+    let maxName;
+
+    for (const name in scores) {
+        if (maxScore < scores[name]) {
+            maxScore = scores[name];
+            maxName = name;
+        }
+    }
+
+    const scores_ = JSON.parse(JSON.stringify(scores));
+    delete scores_[maxName];
+
+    const average = Object.values(scores_).reduce((acc, val) => acc + val, 0) / Object.values(scores).length;
+    console.log(`total w/o max: ${average}`);
+    console.log(`delta: ${maxScore - average}`);
+
+    // or when the other items' average is above the treshold compared to the maximum symptom score
+    if (maxScore - average >= treshold) {
+        console.log("FOUND");
+        console.log(maxName);
+    }
+
     console.log(scores);
 
     const continueAsking = process();
@@ -242,15 +321,13 @@ function calculateDiseaseScore() {
             diseaseTotalScore += data.diseases[disease].symptoms[symptom];
         }
 
-        for (const symptom in dataMod.diseases[disease].symptoms) {
+        for (const symptom in data.diseases[disease].symptoms) {
             if (answered[symptom] === true) {
                 diseaseScore += data.diseases[disease].symptoms[symptom];
             } else if (answered[symptom] === undefined) {
                 diseaseScore += dataMod.diseases[disease].symptoms[symptom];
             }
         }
-
-        console.log(`${disease}: ${diseaseScore}/${diseaseTotalScore}`);
 
         acc[disease] = diseaseScore / diseaseTotalScore;
     }
