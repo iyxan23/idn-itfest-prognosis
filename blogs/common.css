@@ -66,6 +66,11 @@
     transform: translateY(-4rem);
 }
 
+#footer {
+    width: 100%;
+    padding: 1rem 0;
+}
+
 @media (max-width: 1024px) {
     #content {
         max-width: 80vw;

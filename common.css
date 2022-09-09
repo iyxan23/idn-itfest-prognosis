@@ -67,9 +67,8 @@ html, body {
 }
 
 #footer {
-    width: 100%;
     margin-top: 3rem;
-    min-height: 30rem;
+    text-align: center;
 
     background: rgba(255, 255, 255, 0.25);
 
@@ -77,6 +76,11 @@ html, body {
     backdrop-filter: blur(10px);
     
     border-radius: 50px;    
+}
+
+#footer > #heart-img {
+    width: 1rem;
+    height: 1rem;
 }
 
 @media (max-width: 640px) {
