@@ -27,88 +27,80 @@
  */
 
 const infected = document.getElementById("infected");
+const disclamer = document.getElementById("disclamer");
 const infectedContent = document.getElementById("infected-content");
 
 const answers = document.getElementById("answers");
 const header = document.getElementById("box-header");
 const subheader = document.getElementById("box-subheader");
 
-var data; // fixed
-var dataMod; // same as data but modified with the bias and removed the answered symptoms
-var diseasesScores; // { name(str) -> score(int) }
-var currentQuestion = ""; // symptom
-var answered = {}; // { name(str) -> bool }
+var data;            // fixed
+var dataMod;         // same as data but modified with the bias and removed the answered symptoms
+var diseasesScores;  // { name(str) -> score(int) }
+var currentQuestion; // symptom
+var answered = {};   // { name(str) -> bool }
 
 const treshold = 0.5;
 
-// fetch("./data/diseases.json")
-//     .then(data => data.json())
-//     .then(json => { data = json; process(); });
-
+// source: http://www.diseasesdatabase.com/
 var data = {
 	"diseases": {
-		"disease-a": {
-			"name": "Disease A",
-			"description": "Kelihatannya anda terkena Disease A, lorem ipsum dolor sir amet consectetur adipisicing elit. Exercitationem minima ipsam quis dignissimos, sit maxime ullam optio, ducimus quae at qui vitae magnam vero possimus. Dolorem quod tenetur numquam quisquam.",
-			"link": "https://letmegooglethat.com/?q=lorem%20ipsum",
-			"symptoms": {
-				"nausea": 70,
-				"cough": 90,
-				"fever": 30
-			}
-		},
-		"disease-b": {
-			"name": "Disease B",
-			"description": "Kelihatannya anda terkena Disease B, lorem ipsum dolor sir amet consectetur adipisicing elit. Exercitationem minima ipsam quis dignissimos, sit maxime ullam optio, ducimus quae at qui vitae magnam vero possimus. Dolorem quod tenetur numquam quisquam.",
-			"link": "https://letmegooglethat.com/?q=lorem%20ipsum",
-			"symptoms": {
-				"vommiting": 90,
-				"runny-nose": 40,
-				"cough": 60,
-				"fever": 30
-			}
-		},
-        "disease-c": {
-            "name": "Disease C",
-            "description": "Kelihatannya anda terkena Disease B, lorem ipsum dolor sir amet consectetur adipisicing elit. Exercitationem minima ipsam quis dignissimos, sit maxime ullam optio, ducimus quae at qui vitae magnam vero possimus. Dolorem quod tenetur numquam quisquam.",
-			"link": "https://letmegooglethat.com/?q=lorem%20ipsum",
-			"symptoms": {
+        "influenza": {
+            "name": "Influenza",
+            "description": "Sepertinya anda terkena virus Influenza. Influenza merupakan salah satu virus yang sangat umum terjadi pada banyak orang. Influenza dapat mematikan pada kelompok-kelompok yang beresiko tinggi (seperti lansia, atau memiliki masalah imun).",
+            "symptoms": {
+                "headache": 70,
+                "fever": 70,
+                "runny-nose": 50,
+                "muscle-pain": 30,
+                "taste-disturbance": 20,
+            }
+        },
+        "diharrea": {
+            "name": "Diare",
+            "description": "Sepertinya anda terkena diare. Diare merupakan penyakit dimana tinja atau feses berubah menjadi lembek atau cair. Diare dapat terjadi karena penyakit, alergi, keleibhan vitamin C, dan mengonsumsi Buah-buahan tertentu. Dapat juga terjadi karena memakan makanan yang asam, pedas, atau bersantan sekaligus secara berlebihan dapat menyebabkan diare juga karena membuat usus kaget.",
+            "symptoms": {
+                "dehydration": 70,
+                "vomitting": 40,
+            }
+        },
+        "covid": {
+            "name": "COVID-19",
+            "description": "Sepertinya anda terkena COVID. Coronavirus merupakan virus yang dapat menular, awalnya terjadi di Wuhan, Cina. Sekarang virus ini terlah tersebar ke seluruh dunia dan membuat seluruh dunia dalam status pandemi.",
+            "symptoms": {
                 "cough": 70,
-				"vommiting": 60,
-				"runny-nose": 20,
-				"nausea": 5,
-			}
+                "headache": 70,
+                "fever": 70,
+                "taste-disturbance": 50,
+            }
         }
 	},
 	"questions": {
-		"nausea": "Apakah kamu merasakan pusing?",
+        "muscle-pain": "Apakah kamu merasakan nyeri otot?",
+		"headache": "Apakah kamu merasakan pusing?",
 		"vommiting": "Apakah kamu merasakan muntah muntah?",
 		"cough": "Apakah kamu batuk-batuk?",
 		"runny-nose": "Apakah kamu pilek?",
-		"fever": "Apakah kamu demam?"
+		"fever": "Apakah kamu demam?",
+        "taste-disturbance": "Apakah kamu merasakan masalah dalam merasakan?",
+        "dehydration": "Apakah kamu merasakan dehidrasi?",
 	}
 };
 
 const dataFullScores = sumSymptoms(data);
 
-// deep clone
 dataMod = JSON.parse(JSON.stringify(data));
-console.log(data);
 
 process();
 
 function process() {
-    console.log("proces");
-    console.log(dataMod);
     let symptomScores = sumSymptoms(dataMod);
 
     // find the max symptom
     let maxValue = Object.values(symptomScores)[0];
     let maxSymptom = Object.keys(symptomScores)[0];
 
-    console.log(`maxVal: ${maxValue}`);
-
-    // present when this is the last symptom
+    // when we have no more questions left
     if (Object.values(symptomScores).length === 1) {
         return false;
     }
@@ -129,7 +121,6 @@ function process() {
 
 function answerYes() {
     answered[currentQuestion] = true;
-    console.log(`${currentQuestion}: yes`);
 
     // do some magic bias stuff
     for (const diseaseName in dataMod.diseases) {
@@ -139,7 +130,7 @@ function answerYes() {
         const symptom = disease.symptoms[currentQuestion];
 
         for (const symptomName in disease.symptoms) {
-            disease.symptoms[symptomName] += disease.symptoms[symptomName] * symptom/200;
+            disease.symptoms[symptomName] += disease.symptoms[symptomName] * symptom/350;
 
             if (disease.symptoms[symptomName] > 100) {
                 disease.symptoms[symptomName] = 100;
@@ -168,47 +159,25 @@ function answerYes() {
     delete scores_[maxName];
 
     const average = Object.values(scores_).reduce((acc, val) => acc + val, 0) / Object.values(scores).length;
-    console.log(`total w/o max: ${average}`);
-    console.log(`delta: ${maxScore - average}`);
 
     // or when the other items' average is above the treshold compared to the maximum symptom score
     if (maxScore - average >= treshold) {
-        console.log("FOUND");
-        console.log(maxName);
-    }
-
-    console.log(scores);
-    for (const disease in scores) {
-        if (scores[disease] >= 0.75) {
-            // this is probably the disease we're looking for
-            console.log(`prob disease: ${disease}`)
-        }
-    }
-
-    // check for the treshold
-    const continueAsking = process();
-
-    if (continueAsking === false) {
-        // present the most probable disease
-        let max = 0;
-        let maxName;
-
-        for (const disease in scores) {
-            if (scores[disease] > max) {
-                max = scores[disease];
-                maxName = disease;
-            }
-        }
-
-        console.log(`present disease ${maxName}`);
-
         presentDisease(maxName);
+        return;
+    }
+
+    if (process() === false) { 
+        infected.style.display = "inherit";
+        disclamer.style.display = "none";
+        answers.style.display = "none";
+
+        infectedContent.innerText = "We're unable to predict what kind of disease you have.";
+        subheader.innerText = "Unknown";
     }
 }
 
 function answerNo() {
     answered[currentQuestion] = false;
-    console.log(`${currentQuestion}: no`);
 
     // do some magic bias stuff
     for (const diseaseName in dataMod.diseases) {
@@ -218,7 +187,7 @@ function answerNo() {
         const symptom = disease.symptoms[currentQuestion];
 
         for (const symptomName in disease.symptoms) {
-            disease.symptoms[symptomName] -= disease.symptoms[symptomName] * symptom/200;
+            disease.symptoms[symptomName] -= disease.symptoms[symptomName] * symptom/350;
 
             if (disease.symptoms[symptomName] > 100) {
                 disease.symptoms[symptomName] = 100;
@@ -232,7 +201,7 @@ function answerNo() {
     // calculate scores
     const scores = calculateDiseaseScore();
 
-    // find the max score
+    // find the max score;
     let maxScore = 0;
     let maxName;
 
@@ -247,34 +216,20 @@ function answerNo() {
     delete scores_[maxName];
 
     const average = Object.values(scores_).reduce((acc, val) => acc + val, 0) / Object.values(scores).length;
-    console.log(`total w/o max: ${average}`);
-    console.log(`delta: ${maxScore - average}`);
 
     // or when the other items' average is above the treshold compared to the maximum symptom score
     if (maxScore - average >= treshold) {
-        console.log("FOUND");
-        console.log(maxName);
-    }
-
-    console.log(scores);
-
-    const continueAsking = process();
-
-    if (continueAsking === false) {
-        // present the most probable disease
-        let max = 0;
-        let maxName;
-
-        for (const disease in scores) {
-            if (scores[disease] > max) {
-                max = scores[disease];
-                maxName = disease;
-            }
-        }
-
-        console.log(`present disease ${maxName}`);
-
         presentDisease(maxName);
+        return;
+    }
+    
+    if (process() === false) { 
+        infected.style.display = "inherit";
+        disclamer.style.display = "none";
+        answers.style.display = "none";
+
+        infectedContent.innerText = "We're unable to predict what kind of disease you have.";
+        subheader.innerText = "Unknown";
     }
 }
 
