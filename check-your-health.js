@@ -51,17 +51,15 @@ var data = {
             "symptoms": {
                 "headache": 70,
                 "fever": 70,
-                "runny-nose": 50,
                 "muscle-pain": 30,
-                "taste-disturbance": 20,
             }
         },
-        "diharrea": {
-            "name": "Diare",
-            "description": "Sepertinya anda terkena diare. Diare merupakan penyakit dimana tinja atau feses berubah menjadi lembek atau cair. Diare dapat terjadi karena penyakit, alergi, keleibhan vitamin C, dan mengonsumsi Buah-buahan tertentu. Dapat juga terjadi karena memakan makanan yang asam, pedas, atau bersantan sekaligus secara berlebihan dapat menyebabkan diare juga karena membuat usus kaget.",
+        "migraine": {
+            "name": "Migraine",
+            "description": "Sepertinya anda terkena Migraine. Migraine merupakan ganggunan kronis yang biasanya terjadi perasaan sakit kepala pada salah satu bagian kepala. Migraine dapat terjadi dalam berbagai macam intensitas.",
             "symptoms": {
-                "dehydration": 70,
-                "vomitting": 40,
+                "headache": 70,
+                "vomiting": 40,
             }
         },
         "covid": {
@@ -71,19 +69,15 @@ var data = {
                 "cough": 70,
                 "headache": 70,
                 "fever": 70,
-                "taste-disturbance": 50,
             }
         }
 	},
 	"questions": {
         "muscle-pain": "Apakah kamu merasakan nyeri otot?",
 		"headache": "Apakah kamu merasakan pusing?",
-		"vommiting": "Apakah kamu merasakan muntah muntah?",
+		"vomiting": "Apakah kamu merasakan muntah muntah?",
 		"cough": "Apakah kamu batuk-batuk?",
-		"runny-nose": "Apakah kamu pilek?",
 		"fever": "Apakah kamu demam?",
-        "taste-disturbance": "Apakah kamu merasakan masalah dalam merasakan?",
-        "dehydration": "Apakah kamu merasakan dehidrasi?",
 	}
 };
 
@@ -101,7 +95,7 @@ function process() {
     let maxSymptom = Object.keys(symptomScores)[0];
 
     // when we have no more questions left
-    if (Object.values(symptomScores).length === 1) {
+    if (Object.values(symptomScores).length === 0) {
         return false;
     }
 
@@ -171,8 +165,8 @@ function answerYes() {
         disclamer.style.display = "none";
         answers.style.display = "none";
 
-        infectedContent.innerText = "We're unable to predict what kind of disease you have.";
-        subheader.innerText = "Unknown";
+        infectedContent.innerText = "Kita tidak dapat memprediksi penyakit apa yang anda derita.";
+        subheader.innerText = "Tak diketahui";
     }
 }
 
