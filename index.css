@@ -10,7 +10,7 @@
     margin-bottom: 1.5rem;
 }
 
-#carousel > #left-nav {
+#carousel > #left-nav, #right-nav {
     align-self: center;
     object-fit: contain;
     opacity: 0.5;
@@ -20,21 +20,13 @@
     width: 5rem;
 
     z-index: 5;
+}
 
+#carousel > #left-nav {
     background: linear-gradient(90deg, rgba(14,25,45,0.5) 10%, rgba(255,255,255,0) 100%);
 }
 
 #carousel > #right-nav {
-    align-self: center;
-    object-fit: contain;
-    opacity: 0.5;
-    cursor: pointer;
-
-    height: 100%;
-    width: 5rem;
-
-    z-index: 5;
-
     background: linear-gradient(270deg, rgba(14,25,45,0.5) 10%, rgba(255,255,255,0) 100%);
 }
 
@@ -274,20 +266,20 @@
         padding-right: 2.5rem;
     }
 
-    #carousel > .carousel-card {
+    #carousel > #carousel-cards > .carousel-card {
         min-width: 75vw;
         max-width: 75vw;
     }
 
-    #carousel > .carousel-card:first-of-type {
+    #carousel > #carousel-cards > .carousel-card:first-of-type {
         margin-left: 10vw;
     }
 
-    #carousel > .carousel-card:last-of-type {
+    #carousel > #carousel-cards > .carousel-card:last-of-type {
         margin-right: 10vw;
     }
     
-    #carousel > .carousel-card > .carousel-content > .carousel-content-header {
+    #carousel > #carousel-cards > .carousel-card > .carousel-content > .carousel-content-header {
         font-size: 18pt;
     }
 }
@@ -309,7 +301,7 @@
         gap: 2rem;
     }
     
-    #carousel > .carousel-separator {
+    #carousel > #carousel-cards > .carousel-separator {
         min-width: 0px;
 
         margin-left: 7.5vw;
@@ -320,20 +312,32 @@
         border-radius: none;
     }
 
-    #carousel > .carousel-card {
+    #carousel > #carousel-cards > .carousel-card {
         min-width: 90vw;
     }
     
-    #carousel > .carousel-card > .carousel-content-img {
+    #carousel > #carousel-cards > .carousel-card > .carousel-content-img {
         display: none;
     }
 
-    #carousel > .carousel-card > .carousel-content > .carousel-content-header {
+    #carousel > #carousel-cards > .carousel-card > .carousel-content > .carousel-content-header {
         font-size: 15pt;
     }
 
-    #carousel > .carousel-card > .carousel-content > .carousel-content-divider {
+    #carousel > #carousel-cards > .carousel-card > .carousel-content > .carousel-content-divider {
         display: none;
+    }
+    
+    #carousel > #left-nav {
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.2) 10%, rgba(255,255,255,0) 75%);
+    }
+
+    #carousel > #right-nav {
+        background: linear-gradient(270deg, rgba(255, 255, 255, 0.2) 10%, rgba(255,255,255,0) 75%);
+    }
+
+    #carousel > #left-nav, #right-nav {
+        filter: invert(100%);
     }
 }
 
