@@ -8,7 +8,7 @@ const carouselBar = document.getElementById("bar");
 const carouselIntervalDelay = 10000;
 var carouselInterval;
 
-document.onload = () => {
+window.onload = () => {
     carouselInterval = setInterval(carouselRight, carouselIntervalDelay);
 }
 
