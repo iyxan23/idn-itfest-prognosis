@@ -222,8 +222,8 @@ function answerNo() {
         disclamer.style.display = "none";
         answers.style.display = "none";
 
-        infectedContent.innerText = "We're unable to predict what kind of disease you have.";
-        subheader.innerText = "Unknown";
+        infectedContent.innerText = "Kami tidak dapat memprediksi penyakit anda. Sepertinya anda tidak sedang sakit?";
+        subheader.innerText = "Penyakit tidak diketahui";
     }
 }
 
