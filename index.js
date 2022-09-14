@@ -6,7 +6,11 @@ const bottomButtons = document.getElementById("bottom-buttons");
 const carouselBar = document.getElementById("bar");
 
 const carouselIntervalDelay = 10000;
-var carouselInterval = setInterval(carouselRight, carouselIntervalDelay);
+var carouselInterval;
+
+document.onload = () => {
+    carouselInterval = setInterval(carouselRight, carouselIntervalDelay);
+}
 
 var cardPositions = Array.from(
             document.querySelectorAll("#carousel > #carousel-cards > .carousel-card").values()
