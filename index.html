@@ -20,7 +20,7 @@
             </div>
         </div>
         <div id="carousel">
-            <img onclick="carouselLeft()" id="left-nav" src="./assets/chevron-left.svg" />
+            <img onclick="notifyAUtoScroll(); carouselLeft()" id="left-nav" src="./assets/chevron-left.svg" />
             <div id="carousel-cards">
                 <div class="carousel-card">
                     <img class="carousel-content-img img-left" src="./assets/virusbah.jpg" width="25%" />
@@ -70,7 +70,8 @@
                     </div>
                 </div>
             </div>
-            <img onclick="carouselRight()" id="right-nav" src="./assets/chevron-right.svg" />
+            <img onclick="notifyAutoScroll(); carouselRight()" id="right-nav" src="./assets/chevron-right.svg" />
+            <div id="bar"></div> 
         </div>
         <div id="content">
             <div id="bottom-buttons">

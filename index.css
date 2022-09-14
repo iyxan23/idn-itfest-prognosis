@@ -1,5 +1,9 @@
 @import "common.css";
 
+:root {
+    --carousel-interval: 10s;
+}
+
 #carousel {
     background-color: #d3e8f3aa;
     backdrop-filter: blur(7px);
@@ -150,6 +154,23 @@
     border: 1px solid #D9D9D9;
     border-radius: 50px;
     /* min-width: 5vw; */
+}
+
+#carousel > #bar {
+    height: 0.25rem;
+    background-color: #a1b9c6;
+    /* opacity: 0.25; */
+    display: absolute;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+
+    animation: bar-progress var(--carousel-interval) infinite linear;
+}
+
+@keyframes bar-progress {
+    from { width: 0%; }
+    to { width: 100%; }
 }
 
 #bottom-buttons {
