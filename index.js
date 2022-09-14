@@ -10,6 +10,9 @@ var carouselInterval;
 
 window.onload = () => {
     carouselInterval = setInterval(carouselRight, carouselIntervalDelay);
+
+    carouselBar.style.animation = "bar-progress var(--carousel-interval) infinite linear";
+    carousel.offsetHeight; // trigger reflow
 }
 
 var cardPositions = Array.from(

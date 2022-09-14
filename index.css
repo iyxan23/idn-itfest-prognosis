@@ -162,10 +162,10 @@
     /* opacity: 0.25; */
     display: absolute;
     position: absolute;
-    width: 100%;
+    width: 0;
     bottom: 0;
 
-    animation: bar-progress var(--carousel-interval) infinite linear;
+    animation: none;
 }
 
 @keyframes bar-progress {
