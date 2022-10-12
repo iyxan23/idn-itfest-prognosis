@@ -61,7 +61,7 @@ html, body {
 
 #main {
     width: 100%;
-    background-image: url(./assets/dec-bg.svg);
+    background-image: url(./assets/img/dec-bg.svg);
     background-position: center;
     background-repeat: repeat;
 }
